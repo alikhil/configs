@@ -1,0 +1,43 @@
+alias kls='kubectl get pods'
+alias klsg='kubectl get pods | grep'
+alias kl='kubectl logs'
+alias kltf='kubectl logs -f --tail=200'
+alias kapl='kubectl apply'
+alias kapli='cat <<EOF | kubectl apply -f -'
+alias king='kubectl get ing'
+alias kd='kubectl describe'
+alias kpf='kubectl port-forward'
+alias kex='kubectl exec'
+alias kg='kubectl get'
+alias kdel='kubectl delete'
+alias klaw='kubectl get pods --all-namespaces -o wide'
+alias kall='kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found'
+alias kdev='kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod'
+
+
+function kjob() {
+	kubectl create job --from=cronjob/$1 $2
+}
+
+function kdapp() {
+	kubectl delete all -l app=$1
+	kubectl delete ing -l app=$1
+}
+
+alias ktl='kubectl'
+
+alias ktppv='kubectl patch pv -p '"'"'{"metadata":{"finalizers":null}}'"'"
+
+alias kdpp='kubectl patch pv -p '"'"'{"spec":{"persistentVolumeReclaimPolicy":"Delete"}}'"'"
+
+alias ktppvc='kubectl patch pvc -p '"'"'{"metadata":{"finalizers":null}}'"'"
+
+alias kstats='join -a1 -a2 -o 0,1.2,1.3,2.2,2.3,2.4,2.5, -e '"'"'<none>'"'"' <(kubectl top pods) <(kubectl get pods -o custom-columns=NAME:.metadata.name,"CPU_REQ(cores)":.spec.containers[*].resources.requests.cpu,"MEMORY_REQ(bytes)":.spec.containers[*].resources.requests.memory,"CPU_LIM(cores)":.spec.containers[*].resources.limits.cpu,"MEMORY_LIM(bytes)":.spec.containers[*].resources.limits.memory) | column -t -s'"'"' '"'" 
+
+alias d='docker'
+alias dcm='docker-compose'
+
+alias gsa='git secret add'
+alias gsh='git secret hide -d'
+alias gsr='git secret reveal'
+alias composer='php /Users/alikhil/scripts/composer.phar'
