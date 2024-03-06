@@ -1,3 +1,5 @@
+alias gittags='git tag --sort=-creatordate'
+alias hide='git secret hide -d -F -m'
 alias kls='kubectl get pods'
 alias klsg='kubectl get pods | grep'
 alias kl='kubectl logs'
@@ -12,8 +14,25 @@ alias kg='kubectl get'
 alias kdel='kubectl delete'
 alias klaw='kubectl get pods --all-namespaces -o wide'
 alias kall='kubectl api-resources --verbs=list --namespaced -o name | xargs -n 1 kubectl get --show-kind --ignore-not-found'
-alias kdev='kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod'
+# alias kdev='kubectl get pods | grep Evicted | awk '{print $1}' | xargs kubectl delete pod'
+alias randpass='openssl rand -base64 8 |md5 |head -c25;echo'
+alias randpassc='openssl rand -base64 8 |md5 |head -c25 | pbcopy'
+alias envup='set -o allexport; source .env; set +o allexport'
+alias kns='kubectl ns'
+alias ktx='kubectl ctx'
+alias kctx='kubectl ctx'
+alias klss='kubectl get pods -o custom-columns=NAME:.metadata.name,SELECTOR:.spec.nodeSelector'
+alias kgn='kubectl get nodes -L app_type'
 
+
+function kltff() {
+	kubectl logs $1 $2 | less +G
+}
+
+
+function kgg() {
+	kubectl get $1 | grep $2
+}
 
 function kjob() {
 	kubectl create job --from=cronjob/$1 $2
@@ -32,12 +51,15 @@ alias kdpp='kubectl patch pv -p '"'"'{"spec":{"persistentVolumeReclaimPolicy":"D
 
 alias ktppvc='kubectl patch pvc -p '"'"'{"metadata":{"finalizers":null}}'"'"
 
-alias kstats='join -a1 -a2 -o 0,1.2,1.3,2.2,2.3,2.4,2.5, -e '"'"'<none>'"'"' <(kubectl top pods) <(kubectl get pods -o custom-columns=NAME:.metadata.name,"CPU_REQ(cores)":.spec.containers[*].resources.requests.cpu,"MEMORY_REQ(bytes)":.spec.containers[*].resources.requests.memory,"CPU_LIM(cores)":.spec.containers[*].resources.limits.cpu,"MEMORY_LIM(bytes)":.spec.containers[*].resources.limits.memory) | column -t -s'"'"' '"'" 
+alias kstats='join -a1 -a2 -o 0,1.2,1.3,2.2,2.3,2.4,2.5, -e '"'"'<none>'"'"' <(kubectl top pods) <(kubectl get pods -o custom-columns=NAME:.metadata.name,"CPU_REQ(cores)":.spec.containers[*].resources.requests.cpu,"MEMORY_REQ(bytes)":.spec.containers[*].resources.requests.memory,"CPU_LIM(cores)":.spec.containers[*].resources.limits.cpu,"MEMORY_LIM(bytes)":.spec.containers[*].resources.limits.memory) | column -t -s'"'"' '"'"
+alias ktop='join -1 2 -2 2 -o 1.1,1.2,1.3,1.4,2.8 <(kubectl top pods --all-namespaces) <(kubectl get pods -o wide --all-namespaces) | column -t -s'"'"' '"'"
 
 alias d='docker'
 alias dcm='docker-compose'
+alias dcmp='docker-compose --project-name'
+
 
 alias gsa='git secret add'
 alias gsh='git secret hide -d'
 alias gsr='git secret reveal'
-alias composer='php /Users/alikhil/scripts/composer.phar'
+alias tfdoc='terraform-docs markdown table'
