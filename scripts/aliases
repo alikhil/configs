@@ -23,6 +23,8 @@ alias ktx='kubectl ctx'
 alias kctx='kubectl ctx'
 alias klss='kubectl get pods -o custom-columns=NAME:.metadata.name,SELECTOR:.spec.nodeSelector'
 alias kgn='kubectl get nodes -L app_type'
+alias k='kubectl'
+alias kill_md="launchctl unload /Library/LaunchAgents/com.microsoft.wdav.tray.plist"
 
 
 function kltff() {
