@@ -1,33 +1,128 @@
-﻿#Requires AutoHotkey v2.0
+﻿; This script assumes that Alt and Ctrl characters have been swapped using a third-party tool
+; full tutorial here -> https://github.com/stevenilsen123/mac-keyboard-behavior-in-windows/tree/main?tab=readme-ov-file
 
-!BS::Send("{Shift down}{Ctrl down}{Left}{Shift up}{Ctrl up}{Backspace}")
-^BS::Send("{Shift down}{Home}{Shift up}{Backspace}")
+; -----KEY GUIDE-----
+; # Win. (the key with the Windows logo) therefore `Send #e` would hold down Win and then press E.
+; + Shift. For example, `Send, +abC` would send the text "AbC", and `Send, !+a` would press Alt+Shift+A.
+; ^ Alt (because of remapkey). For example, `Send, This is text!a` would send the keys "This is text" and then press Alt+A. Note: !A produces a different effect in some programs than !a. This is because !A presses Alt+Shift+A and !a presses Alt+A. If in doubt, use lowercase.
+; ! Ctrl (because of remapkey). For example, `Send, ^!a` would press Ctrl+Alt+A, and Send, ^{Home} would send Ctrl+Home. Note: ^A produces a different effect in some programs than ^a. This is because ^A presses Ctrl+Shift+A and ^a presses Ctrl+A. If in doubt, use lowercase.Sends Ctrl. For example, Send, ^!a would press Ctrl+Alt+A, and Send, ^{Home} would send Ctrl+Home. Note: ^A produces a different effect in some programs than ^a. This is because ^A presses Ctrl+Shift+A and ^a presses Ctrl+A. If in doubt, use lowercase.
+; & An ampersand may be used between any two keys or mouse buttons to combine them into a custom hotkey.
 
+; #Warn  ; Uncomment to enable warnings to assist with detecting common errors.
+SendMode("Input")  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir(A_ScriptDir)  ; Ensures a consistent starting directory.
 
-LCtrl::LWin
-LWin::LCtrl
+; Uncomment for key history
+; #InstallKeybdHook
+; KeyHistory
 
+; App and tab switching
+Ctrl & Tab::AltTab
+!Tab::Send("^{Tab}")
 
-; Ctrl + Left Arrow: Move to the beginning of the line
-^Left::Send("{Home}")
+; Quit the active app
+^q::Send("!{f4}")
 
-; Ctrl + Right Arrow: Move to the end of the line
-^Right::Send("{End}")
+; Remap language change
+!Space::
+{
+    Suspend(true)
+    Send("#{Space}")
+    Suspend(false)
+    return
+}
 
-; Alt + Left Arrow: Move oneo word to the left without triggering the Ctrl+Left remap
-!Left::Send("{Ctrl Down}{Left}{Ctrl Up}")
+; remap for launcher
+#Space::
+{
+    Suspend(true)
+    Send("!{Space}")
+    Suspend(false)
+    return
+}
 
-; Alt + Right Arrow: Move one word to the right without triggering the Ctrl+Right remap
-!Right::Send("{Ctrl Down}{Right}{Ctrl Up}")
-
-; Ctrl + Shift + Left Arrow: Select to the beginning of the line
-^+Left::Send("{Shift Down}{Home}{Shift Up}")
-
-; Ctrl + Shift + Right Arrow: Select to the end of the line
-^+Right::Send("{Shift Down}{End}{Shift Up}")
-
-; Alt + Shift + Left Arrow: Select one word to the left without triggering the Ctrl+Left remap
-!+Left::Send("{Ctrl Down}{Shift Down}{Left}{Shift Up}{Ctrl Up}")
-
-; Alt + Shift + Right Arrow: Select one word to the right without triggering the Ctrl+Right remap
-!+Right::Send("{Ctrl Down}{Shift Down}{Right}{Shift Up}{Ctrl Up}")
+; Insertion point movement
+^Left::
+{
+    Suspend(true)
+    Send("{Home}")
+    Suspend(false)
+    return
+}
+^Right::
+{
+    Suspend(true)
+    Send("{End}")
+    Suspend(false)
+    return
+}
+^Up::
+{
+    Suspend(true)
+    Send("^{Home}")
+    Suspend(false)
+    return
+}
+^Down::
+{
+    Suspend(true)
+    Send("^{End}")
+    Suspend(false)
+    return
+}
++^Left::
+{
+    Suspend(true)
+    Send("+{Home}")
+    Suspend(false)
+    return
+}
++^Right::
+{
+    Suspend(true)
+    Send("+{End}")
+    Suspend(false)
+    return
+}
++^Up::
+{
+    Suspend(true)
+    Send("+^{Home}")
+    Suspend(false)
+    return
+}
++^Down::
+{
+    Suspend(true)
+    Send("+^{End}")
+    Suspend(false)
+    return
+}
+#Left::
+{
+    Suspend(true)
+    Send("^{Left}")
+    Suspend(false)
+    return
+}
+#Right::
+{
+    Suspend(true)
+    Send("^{Right}")
+    Suspend(false)
+    return
+}
++#Left::
+{
+    Suspend(true)
+    Send("+^{Left}")
+    Suspend(false)
+    return
+}
++#Right::
+{
+    Suspend(true)
+    Send("+^{Right}")
+    Suspend(false)
+    return
+}
