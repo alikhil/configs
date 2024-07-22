@@ -23,6 +23,8 @@ Ctrl & Tab::AltTab
 ; Quit the active app
 ^q::Send("!{f4}")
 
+;;;; CUSTOMS ;;;;;
+
 ; Remap language change
 !Space::
 {
@@ -40,6 +42,64 @@ Ctrl & Tab::AltTab
     Suspend(false)
     return
 }
+
+; remap for desktop switch
+!Left::
+{
+    Suspend(true)
+    Send("#^{Left}")
+    Suspend(false)
+    return
+}
+
+!Right::
+{
+    Suspend(true)
+    Send("#^{Right}")
+    Suspend(false)
+    return
+}
+
+; vscode 
+
+SetTitleMatchMode(2)
+#hotif WinActive("Visual Studio Code")
+#Up::
+{
+    Suspend(true)
+    Send("!{Up}")
+    Suspend(false)
+    return
+}
+#Down::
+{
+    Suspend(true)
+    Send("!{Down}")
+    Suspend(false)
+    return
+}
+#+Up::
+{
+    Suspend(true)
+    Send("!+{Up}")
+    Suspend(false)
+    return
+}
+#+Down::
+{
+    Suspend(true)
+    Send("!+{Down}")
+    Suspend(false)
+    return
+}
+#hotif
+
+; !o::
+; {
+;     Suspend(true)
+; }
+
+;;;; CUSTOMS ;;;;;
 
 ; Insertion point movement
 ^Left::
