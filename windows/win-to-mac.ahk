@@ -92,12 +92,17 @@ SetTitleMatchMode(2)
     Suspend(false)
     return
 }
+
 #hotif
 
-; !o::
-; {
-;     Suspend(true)
-; }
+; make dash in russian layout
+#ь::
+{
+    Suspend(true)
+    Send("-")
+    Suspend(false)
+    return
+}
 
 ;;;; CUSTOMS ;;;;;
 
