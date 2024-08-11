@@ -25,8 +25,8 @@ Ctrl & Tab::AltTab
 
 ;;;; CUSTOMS ;;;;;
 
-; Remap language change
-!Space::
+; remap for launcher
+#Space::
 {
     Suspend(true)
     Send("#{Space}")
@@ -34,8 +34,8 @@ Ctrl & Tab::AltTab
     return
 }
 
-; remap for launcher
-#Space::
+; Remap language change
+!Space::
 {
     Suspend(true)
     Send("!{Space}")
@@ -95,6 +95,21 @@ SetTitleMatchMode(2)
 
 #hotif
 
+; Telegram 
+
+; SetTitleMatchMode(2)
+; #hotif WinActive("Telegram")
+; !j::
+; {
+;     Suspend(true)
+;     Send("!{c}")
+;     Suspend(false)
+;     return
+; }
+
+
+; #hotif
+
 ; make dash in russian layout
 #ь::
 {
@@ -102,6 +117,29 @@ SetTitleMatchMode(2)
     Send("-")
     Suspend(false)
     return
+}
+
+; option (really win) + backspace 
+#BS::
+{
+    Suspend(true)
+    Send("{Shift down}{Ctrl down}{Left}{Shift up}{Ctrl up}{Backspace}")
+    Suspend(false)
+}
+
+; command (ctrl) + bs
+^BS::
+{
+    Suspend(true)
+    Send("{Shift down}{Home}{Shift up}{Backspace}")
+    Suspend(false)
+}
+
+#Tab::
+{
+    Suspend(true)
+    Send("!{Tab}")
+    Suspend(false)
 }
 
 ;;;; CUSTOMS ;;;;;
