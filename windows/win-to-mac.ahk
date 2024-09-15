@@ -8,6 +8,8 @@
 ; ! Ctrl (because of remapkey). For example, `Send, ^!a` would press Ctrl+Alt+A, and Send, ^{Home} would send Ctrl+Home. Note: ^A produces a different effect in some programs than ^a. This is because ^A presses Ctrl+Shift+A and ^a presses Ctrl+A. If in doubt, use lowercase.Sends Ctrl. For example, Send, ^!a would press Ctrl+Alt+A, and Send, ^{Home} would send Ctrl+Home. Note: ^A produces a different effect in some programs than ^a. This is because ^A presses Ctrl+Shift+A and ^a presses Ctrl+A. If in doubt, use lowercase.
 ; & An ampersand may be used between any two keys or mouse buttons to combine them into a custom hotkey.
 
+; Check more here https://github.com/rbreaves/kinto/blob/master/windows/kinto.ahk
+
 ; #Warn  ; Uncomment to enable warnings to assist with detecting common errors.
 SendMode("Input")  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir(A_ScriptDir)  ; Ensures a consistent starting directory.
@@ -26,7 +28,7 @@ Ctrl & Tab::AltTab
 ;;;; CUSTOMS ;;;;;
 
 ; remap for launcher
-#Space::
+!Space::
 {
     Suspend(true)
     Send("#{Space}")
@@ -35,7 +37,7 @@ Ctrl & Tab::AltTab
 }
 
 ; Remap language change
-!Space::
+#Space::
 {
     Suspend(true)
     Send("!{Space}")
@@ -115,6 +117,22 @@ SetTitleMatchMode(2)
 {
     Suspend(true)
     Send("-")
+    Suspend(false)
+    return
+}
+
+; make [] in russian layout with alt
+#ю::
+{
+    Suspend(true)
+    Send("[")
+    Suspend(false)
+    return
+}
+#ж::
+{
+    Suspend(true)
+    Send("]")
     Suspend(false)
     return
 }
