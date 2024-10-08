@@ -25,6 +25,8 @@ alias klss='kubectl get pods -o custom-columns=NAME:.metadata.name,SELECTOR:.spe
 alias kgn='kubectl get nodes -L app_type'
 alias k='kubectl'
 alias kill_md="launchctl unload /Library/LaunchAgents/com.microsoft.wdav.tray.plist"
+alias gitwhere="git rev-parse --show-toplevel"
+alias refreshes="kubectl get es -A --no-headers | awk '{printf \"es/%s -n %s\", \$2, \$1; print \"\n\" }' | xargs -L 1 -I{}  bash -c ' kubectl annotate {} force-sync=$(date +%s) --overwrite'"
 
 
 function kltff() {
