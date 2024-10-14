@@ -20,5 +20,4 @@ if [ `whoami` == "alikkhilazhev" ]; then
 fi
 
 echo "Switching monitor input source to $DEST_NAME"
-sleep 2
 /Applications/BetterDisplay.app/Contents/MacOS/BetterDisplay set -ddc=$DEST_ID -vcp=inputSelect
