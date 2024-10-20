@@ -8,6 +8,7 @@
 # @raycast.mode silent
 #
 # Optional parameters:
+# @raycast.️alias switch-monitor
 # @raycast.icon 🖥️
 # @raycast.packageName Raycast Scripts
 
