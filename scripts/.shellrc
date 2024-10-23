@@ -1,5 +1,4 @@
 # shell script that must be added to .zshrc or .bashrc
-ssh-add
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 source $SCRIPT_DIR/aliases
