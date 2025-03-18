@@ -12,10 +12,10 @@
 # @raycast.icon 🖥️
 # @raycast.packageName Raycast Scripts
 
-DEST_ID=18
+DEST_ID=17
 DEST_NAME="Home Mac Mini"
 
-if [ `whoami` == "alikkhilazhev" ]; then
+if [ $(whoami) == "alikkhilazhev" ]; then
   DEST_ID=25
   DEST_NAME="Work Macbook Air"
 fi
